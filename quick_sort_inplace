@@ -1,0 +1,72 @@
+// quick_sort_inplace.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <utility>
+#include <cassert>
+using namespace std;
+
+int partition_sudhan(vector<int> arr, int start, int end) {
+
+	int pivot = arr[end];
+	int position = start;
+
+	for (int i = 0; i < end; i++){
+
+		if (arr[i] > pivot) {
+			int temp = arr[i];
+			arr[i] = pivot;
+			pivot = temp;
+			position++;
+		}
+	}
+	std::swap(pivot, position);
+	return position;
+}
+
+int quicksort(vector <int> arr,int start, int end) {
+
+	int pivot = partition_sudhan(arr, start, end - 1);
+	quicksort(arr, start, pivot - 1);
+	quicksort(arr, pivot + 1, end);
+	return 0;
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	/* Enter your code here. Read input from STDIN. Print output to STDOUT */
+	int n;
+	int x;
+	cout << "enter the number of elements" << endl;
+	cin >> n;
+	assert((n >= 1) && (n <= 5000));
+
+	vector<int> arr;
+
+	// Receive the input elements
+
+	for (int count = 0; count < n; count++) {
+		cin >> x;
+		assert((x >= -10000) && (n <= 10000));
+		arr.push_back(x);
+	}
+
+	int start = 0;
+	int end = n;
+
+	quicksort(arr, start, end);
+
+	// Print the elements
+
+	for (int count = 0; count < n; count++) {
+		cout << arr[count] << " ";
+	}
+
+	return 0;
+}
+
