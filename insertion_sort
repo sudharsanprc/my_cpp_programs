@@ -1,0 +1,53 @@
+// insertion_sort_1.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+void insertionSort(vector <int>  ar) {
+
+	int x = ar.size();
+
+	int unsort_element = ar[x-1];
+	int last_index = x - 1;
+
+	while ((last_index >= 0) && (ar[last_index - 1] > unsort_element)) {
+		ar[last_index] = ar[last_index - 1];
+
+		for (int u = 0; u < ar.size(); u++) {
+			cout << ar[u] <<"  ";
+		}
+		cout << endl;
+		last_index--;
+	}
+
+	ar[last_index] = unsort_element;
+
+	for (int u = 0; u < ar.size(); u++) {
+		cout << ar[u] << "  ";
+	}
+	cout << endl;
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	vector <int>  _ar;
+	int _ar_size;
+	int _ar_tmp;
+	cout << "Enter the size of array" << endl;
+	cin >> _ar_size;
+	for (int _ar_i = 0; _ar_i < _ar_size; _ar_i++) {		
+		cin >> _ar_tmp;
+		_ar.push_back(_ar_tmp);
+	}
+
+	insertionSort(_ar);
+
+	return 0;
+}
+
